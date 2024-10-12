@@ -1,3 +1,5 @@
+// Source: https://github.com/tomayac/SVGcode/blob/main/public/share-target/sharetargetsw.js
+
 const CACHE_NAME = 'share-target-cache';
 const ALL_CACHES = [CACHE_NAME];
 
