@@ -10,14 +10,6 @@
   "theme_color": "#14213D",
   "background_color": "#14213D",
   "orientation": "portrait",
-  "file_handlers": [
-          {
-              "action": "/",
-              "accept": {
-                  "image/*": [".jpg", ".jpeg", ".webp", ".png", ".avif", ".gif"]
-              }
-          }
-  ],
   "share_target": {
           "action": "/?share-target",
           "method": "POST",
