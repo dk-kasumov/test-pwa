@@ -34,13 +34,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     window.addEventListener('load', async () => {
-      console.log('fetch', 'load happens', location.search);
-
       if (location.search.includes('share-target')) {
         const keys = await caches.keys();
-        const sharedCache = await caches.open(keys.filter(key => key.startsWith('share-target'))[0]);
-        const formData = await sharedCache.match('shared-data');
-        alert(formData);
+        const sharedCache = await caches.open(
+            keys.filter((key) => key.startsWith('share-target'))[0]
+        );
+        const image = await sharedCache.match('shared-image');
+        if (image) {
+          const blob = await image.blob();
+          await sharedCache.delete('shared-image');
+          alert(blob);
+        }
       }
     });
   }
