@@ -8,7 +8,7 @@ export const appConfig: ApplicationConfig = {
     providers: [
         provideZoneChangeDetection({eventCoalescing: true}),
         provideRouter(routes),
-        provideServiceWorker('./combined-sw.js', {
+        provideServiceWorker('combined-sw.js', {
             enabled: !isDevMode(),
         })
     ]
