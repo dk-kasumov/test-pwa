@@ -40,10 +40,21 @@ export class AppComponent implements OnInit {
             keys.filter((key) => key.startsWith('share-target'))[0]
         );
         const image = await sharedCache.match('shared-image');
+
         if (image) {
           const blob = await image.blob();
           await sharedCache.delete('shared-image');
-          alert(blob);
+
+          const blobUrl = URL.createObjectURL(blob);
+
+          const img = document.createElement('img');
+
+          img.src = blobUrl;
+
+          img.width = 300;
+          img.height = 200;
+
+          document.body.appendChild(img);
         }
       }
     });
