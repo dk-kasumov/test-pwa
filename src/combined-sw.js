@@ -14,6 +14,8 @@ self.addEventListener('install', (installEvent) => {
 });
 
 self.addEventListener('activate', (activateEvent) => {
+    alert('activate event');
+
     activateEvent.waitUntil(
         (async () => {
             const cacheKeys = await caches.keys();
