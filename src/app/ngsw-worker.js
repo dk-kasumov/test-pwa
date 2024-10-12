@@ -3,6 +3,25 @@ self.addEventListener('install', event => {
   event.waitUntil(self.skipWaiting());
 });
 
+self.addEventListener("fetch", (event) => {
+  event.respondWith(fetch(event.request));
+
+  // if (event.request.method !== "POST") {
+  //   event.respondWith(fetch(event.request));
+  //   return;
+  // }
+  //
+  // event.respondWith(
+  //     (async () => {
+  //       const formData = await event.request.formData();
+  //       const link = formData.get("link") || "";
+  //
+  //       const responseUrl = await saveBookmark(link);
+  //       return Response.redirect(responseUrl, 303);
+  //     })(),
+  // );
+});
+
 // self.addEventListener('fetch', fetchEvent => {
 //   const url = new URL(fetchEvent.request.url);
 //
