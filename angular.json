@@ -29,7 +29,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/app/combined-sw.js"
             ],
             "styles": [
               "src/styles.scss"
