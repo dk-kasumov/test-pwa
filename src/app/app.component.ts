@@ -41,9 +41,9 @@ export class AppComponent implements OnInit {
         );
 
         const file = await sharedCache.match('shared-file');
-        const title = await sharedCache.match('shared-title');
-        const text = await sharedCache.match('shared-text');
-        const url = await sharedCache.match('shared-url');
+        const title = await sharedCache.match('shared-title').then(res => res.text());
+        const text = await sharedCache.match('shared-text').then(res => res.text());
+        const url = await sharedCache.match('shared-url').then(res => res.text());
 
         if (file) {
           const blob = await file.blob();
