@@ -36,12 +36,23 @@ self.addEventListener('fetch', (fetchEvent) => {
         return fetchEvent.respondWith(
             (async () => {
                 const formData = await fetchEvent.request.formData();
-                const image = formData.get('image');
+                const file = formData.get('file');
+                const title = formData.get('title') || '';
+                const text = formData.get('text') || '';
+                const url = formData.get('url') || '';
+
                 const keys = await caches.keys();
                 const sharedCache = await caches.open(
                     keys.filter((key) => key.startsWith('share-target'))[0]
                 );
-                await sharedCache.put('shared-image', new Response(image));
+
+                if (file) {
+                    await sharedCache.put('shared-file', new Response(file));
+                }
+                await sharedCache.put('shared-title', new Response(title));
+                await sharedCache.put('shared-text', new Response(text));
+                await sharedCache.put('shared-url', new Response(url));
+
                 return Response.redirect('./?share-target', 303);
             })()
         );

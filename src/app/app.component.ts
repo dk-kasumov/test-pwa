@@ -39,23 +39,29 @@ export class AppComponent implements OnInit {
         const sharedCache = await caches.open(
             keys.filter((key) => key.startsWith('share-target'))[0]
         );
-        const image = await sharedCache.match('shared-image');
 
-        if (image) {
-          const blob = await image.blob();
-          await sharedCache.delete('shared-image');
+        const file = await sharedCache.match('shared-file');
+        const title = await sharedCache.match('shared-title');
+        const text = await sharedCache.match('shared-text');
+        const url = await sharedCache.match('shared-url');
 
+        if (file) {
+          const blob = await file.blob();
+          await sharedCache.delete('shared-file');
           const blobUrl = URL.createObjectURL(blob);
-
           const img = document.createElement('img');
 
           img.src = blobUrl;
-
           img.width = 300;
           img.height = 200;
-
           document.body.appendChild(img);
         }
+
+        alert(`${title}-${text}-${url}`);
+
+        await sharedCache.delete('shared-title');
+        await sharedCache.delete('shared-text');
+        await sharedCache.delete('shared-url');
       }
     });
   }
